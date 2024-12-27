@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My App Hub</title>
+    <style>
+      :root {
+        --primary-color: #8b5cf6;
+        --hover-color: #7c3aed;
+        --background-color: #f5f3ff;
+        --card-background: #ffffff;
+        --text-primary: #1e1b4b;
+        --text-secondary: #6b7280;
+        --border-color: #e2e8f0;
+        --gradient-start: #a78bfa;
+        --gradient-end: #7c3aed;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.6;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        color: var(--text-primary);
+        background-color: var(--background-color);
+        background-image: radial-gradient(
+            circle at 100% 100%,
+            rgba(167, 139, 250, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 0% 0%,
+            rgba(124, 58, 237, 0.1) 0%,
+            transparent 50%
+          );
+      }
+
+      header {
+        text-align: center;
+        padding: 60px 0;
+        margin-bottom: 40px;
+        background: linear-gradient(
+          135deg,
+          var(--gradient-start) 0%,
+          var(--gradient-end) 100%
+        );
+        border-radius: 16px;
+        color: white;
+        box-shadow: 0 8px 32px rgba(124, 58, 237, 0.2);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      header p {
+        margin: 10px 0 0;
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+
+      .app-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        padding: 20px 0;
+      }
+
+      .app-card {
+        background: var(--card-background);
+        border-radius: 16px;
+        padding: 30px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(124, 58, 237, 0.1);
+        border: 1px solid rgba(124, 58, 237, 0.1);
+      }
+
+      .app-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(124, 58, 237, 0.2);
+        border-color: rgba(124, 58, 237, 0.2);
+      }
+
+      .app-icon {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 24px;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(124, 58, 237, 0.2);
+      }
+
+      .app-card h2 {
+        margin: 0 0 12px;
+        font-size: 1.5rem;
+        color: var(--text-primary);
+        text-align: center;
+      }
+
+      .app-card p {
+        color: var(--text-secondary);
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .app-links {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .app-card a {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+
+      .app-card a:first-child {
+        background-color: var(--primary-color);
+        color: white;
+        box-shadow: 0 2px 4px rgba(124, 58, 237, 0.2);
+      }
+
+      .app-card a:first-child:hover {
+        background-color: var(--hover-color);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(124, 58, 237, 0.3);
+      }
+
+      .app-card a:last-child {
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+      }
+
+      .app-card a:last-child:hover {
+        background-color: rgba(139, 92, 246, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .privacy-section {
+        padding: 60px 0;
+        border-top: 1px solid rgba(124, 58, 237, 0.1);
+      }
+
+      .privacy-section h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 2rem;
+        background: linear-gradient(
+          135deg,
+          var(--gradient-start) 0%,
+          var(--gradient-end) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .privacy-policy {
+        background: var(--card-background);
+        padding: 40px;
+        border-radius: 16px;
+        margin: 20px 0;
+        box-shadow: 0 4px 6px rgba(124, 58, 237, 0.1);
+        border: 1px solid rgba(124, 58, 237, 0.1);
+      }
+
+      .privacy-policy h3 {
+        margin: 0 0 20px;
+        font-size: 1.8rem;
+        color: var(--primary-color);
+      }
+
+      .privacy-policy h4 {
+        margin: 30px 0 15px;
+        font-size: 1.2rem;
+        color: var(--text-primary);
+      }
+
+      .privacy-policy p {
+        margin: 15px 0;
+        color: var(--text-secondary);
+      }
+
+      .privacy-policy ul {
+        margin: 15px 0;
+        padding-left: 20px;
+        color: var(--text-secondary);
+      }
+
+      .privacy-policy li {
+        margin: 8px 0;
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--text-secondary);
+        border-top: 1px solid rgba(124, 58, 237, 0.1);
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 15px;
+        }
+
+        header {
+          padding: 40px 20px;
+        }
+
+        .privacy-policy {
+          padding: 30px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>My App Hub</h1>
+      <p>Welcome to the home of my mobile applications</p>
+    </header>
+
+    <main>
+      <section class="app-grid">
+        <div class="app-card">
+          <div class="app-icon">
+            <img
+              src="OhioPngPick.png"
+              alt="App Icon"
+              style="width: 100%; height: 100%; border-radius: 20px"
+            />
+          </div>
+          <h2>Ohio EightBall</h2>
+          <p>Takes BrainRot to a whole new level</p>
+          <div class="app-links">
+            <a href="#">Download on App Store</a>
+            <a href="#privacy-app1">Privacy Policy</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="privacy-section">
+        <h2>Privacy Policies</h2>
+        <div id="privacy-app1" class="privacy-policy">
+          <h3>Ohio EightBall - Privacy Policy</h3>
+          <p>Last updated: 12/27/2024</p>
+
+          <h4>Introduction</h4>
+          <p>
+            At Ohio EightBall, we are committed to protecting your privacy. This
+            Privacy Policy outlines our practices regarding the collection, use,
+            and safeguarding of any information related to the app.
+          </p>
+          <p>
+            Please note that we do not collect, store, or share any personal or
+            non-personal data from users of this app.
+          </p>
+
+          <h4>Information We Do Not Collect</h4>
+          <p>
+            Ohio EightBall does not collect any information from users,
+            including but not limited to:
+          </p>
+          <ul>
+            <li>
+              Personal information such as names, email addresses, or phone
+              numbers
+            </li>
+            <li>Device information</li>
+            <li>Location data</li>
+            <li>App usage statistics</li>
+          </ul>
+
+          <h4>Third-Party Services</h4>
+          <p>
+            This app does not integrate with any third-party services, analytics
+            tools, or ad networks. As a result, no data is shared with external
+            entities.
+          </p>
+
+          <h4>Data Security</h4>
+          <p>
+            Although we do not collect any data, we remain committed to
+            maintaining the security and integrity of this app to ensure a safe
+            user experience.
+          </p>
+
+          <h4>Changes to This Privacy Policy</h4>
+          <p>
+            This Privacy Policy may be updated periodically to reflect any
+            changes in the app or relevant legal requirements. Please check back
+            occasionally for updates.
+          </p>
+
+          <h4>Contact</h4>
+          <p>
+            If you have any questions about this Privacy Policy or ideas for the
+            app, feel free to contact us at:
+          </p>
+          <p>8ohiohelp@gmail.com</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Made with ❤️ by Ohio Team</p>
+    </footer>
+  </body>
+</html>
